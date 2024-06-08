@@ -87,7 +87,7 @@ jobs:
         CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
         CI_REGISTRY: ghcr.io
         CLUSTER: ${{ secrets.CLUSTER }}
-      run: command build
+        COMMAND: "command build"
 
     # - name: Deploy
     #   run: |
