@@ -87,6 +87,7 @@ jobs:
         CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
         CI_REGISTRY: ghcr.io
         CLUSTER: ${{ secrets.CLUSTER }}
+      run: command build
 
     # - name: Deploy
     #   run: |
@@ -196,7 +197,7 @@ jobs:
       CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
       CI_REGISTRY: ghcr.io
       CLUSTER: ${{ secrets.CLUSTER }}
-    run: command build
+    
 
     container:
       image: marocz/k8s-deploy-helper-github:1.1.0
