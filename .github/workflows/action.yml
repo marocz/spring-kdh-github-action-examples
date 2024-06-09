@@ -74,7 +74,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build(Using Action)
-      uses: marocz/kdh-github-action@v0.0.1.4
+      uses: marocz/kdh-github-action@v0.0.1.5
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
