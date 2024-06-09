@@ -74,7 +74,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -90,7 +90,7 @@ jobs:
         COMMAND: "command build"
 
     - name: Deploy
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -123,7 +123,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -139,7 +139,7 @@ jobs:
         COMMAND: "command build"
 
     - name: Deploy
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -172,7 +172,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -188,7 +188,7 @@ jobs:
         COMMAND: "command build"
 
     - name: Deploy
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -221,7 +221,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -237,7 +237,7 @@ jobs:
         COMMAND: "command build"
 
     - name: Deploy
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -272,7 +272,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Destroy
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -305,7 +305,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Destroy
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -338,7 +338,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Destroy
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
@@ -371,7 +371,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Destroy
-      uses: marocz/kdh-github-action@v0.0.1.7
+      uses: marocz/kdh-github-action@v0.0.1.8
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
