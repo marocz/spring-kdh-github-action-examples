@@ -73,7 +73,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-    - name: Build(Using Action)
+    - name: Build
       uses: marocz/kdh-github-action@v0.0.1.7
       with:
         CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
@@ -109,25 +109,6 @@ jobs:
     needs: App_Tests
     if: github.ref == 'refs/heads/staging' && github.event.inputs.destroy == 'false' && github.event.inputs.is_canary_destroy == 'false' && github.event.inputs.is_canary == 'false'
     runs-on: ubuntu-latest
-    env:
-      CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-k8s-deploy-helper-examples
-      KUBE_URL: ${{ secrets.KUBE_URL }}
-      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-      KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
-      KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
-      CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
-      CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
-      CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      CI_REGISTRY: ghcr.io
-      CLUSTER: ${{ secrets.CLUSTER }}
-
-    container:
-      image: marocz/k8s-deploy-helper-github:1.1.0
-      #   options: --privileged
-      # docker-in-dind:
-      #   image: docker:stable-dind
-      #   options: --privileged
 
     steps:
     # Checkout the code
@@ -142,36 +123,41 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build
-      run: |
-        command build
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command build"
 
     - name: Deploy
-      run: |
-        command deploy
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command deploy"
 
   deploy-production:
     needs: App_Tests
     if: github.ref == 'refs/heads/production' && github.event.inputs.destroy == 'false'  && github.event.inputs.is_canary == 'false' && github.event.inputs.is_canary_destroy == 'false'
     runs-on: ubuntu-latest
-    env:
-      CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-k8s-deploy-helper-examples
-      KUBE_URL: ${{ secrets.KUBE_URL }}
-      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-      KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
-      KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
-      CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
-      CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
-      CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      CI_REGISTRY: ghcr.io
-      CLUSTER: ${{ secrets.CLUSTER }}
-
-    container:
-      image: marocz/k8s-deploy-helper-github:1.1.0
-      #   options: --privileged
-      # docker-in-dind:
-      #   image: docker:stable-dind
-      #   options: --privileged
 
     steps:
     # Checkout the code
@@ -186,37 +172,41 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build
-      run: |
-        command build
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command build"
 
     - name: Deploy
-      run: |
-        command deploy
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command deploy"
 
   canary:
     needs: App_Tests
     if: github.event.inputs.is_canary == 'true'  && github.event.inputs.is_canary_destroy == 'false'
     runs-on: ubuntu-latest
-    env:
-      CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-k8s-deploy-helper-examples
-      KUBE_URL: ${{ secrets.KUBE_URL }}
-      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-      KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
-      KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
-      CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
-      CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
-      CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      CI_REGISTRY: ghcr.io
-      CLUSTER: ${{ secrets.CLUSTER }}
-    
-
-    container:
-      image: marocz/k8s-deploy-helper-github:1.1.0
-      #   options: --privileged
-      # docker-in-dind:
-      #   image: docker:stable-dind
-      #   options: --privileged
 
     steps:
     # Checkout the code
@@ -231,12 +221,36 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build
-      run: |
-        command build
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command build"
 
     - name: Deploy
-      run: |
-        command deploy-flagger
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command deploy-flagger"
 
 
 
@@ -244,25 +258,6 @@ jobs:
     needs: App_Tests
     if: github.ref == 'refs/heads/main' && github.event.inputs.destroy == 'true'
     runs-on: ubuntu-latest
-    env:
-      CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-k8s-deploy-helper-examples
-      KUBE_URL: ${{ secrets.KUBE_URL }}
-      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-      KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
-      KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
-      CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
-      CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
-      CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      CI_REGISTRY: ghcr.io
-      CLUSTER: ${{ secrets.CLUSTER }}
-
-    container:
-      image: marocz/k8s-deploy-helper-github:1.1.0
-      #   options: --privileged
-      # docker-in-dind:
-      #   image: docker:stable-dind
-      #   options: --privileged
 
     steps:
     # Checkout the code
@@ -277,32 +272,25 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Destroy
-      run: |
-        command destroy
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command destroy"
 
   destroy-staging:
     needs: App_Tests
     if: github.ref == 'refs/heads/staging' && github.event.inputs.destroy == 'true'
     runs-on: ubuntu-latest
-    env:
-      CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-k8s-deploy-helper-examples
-      KUBE_URL: ${{ secrets.KUBE_URL }}
-      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-      KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
-      KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
-      CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
-      CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
-      CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      CI_REGISTRY: ghcr.io
-      CLUSTER: ${{ secrets.CLUSTER }}
-
-    container:
-      image: marocz/k8s-deploy-helper-github:1.1.0
-      #   options: --privileged
-      # docker-in-dind:
-      #   image: docker:stable-dind
-      #   options: --privileged
 
     steps:
     # Checkout the code
@@ -317,32 +305,25 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Destroy
-      run: |
-        command destroy
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command destroy"
 
   destroy-production:
     needs: App_Tests
     if: github.ref == 'refs/heads/production' && github.event.inputs.destroy == 'true'
     runs-on: ubuntu-latest
-    env:
-      CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-k8s-deploy-helper-examples
-      KUBE_URL: ${{ secrets.KUBE_URL }}
-      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-      KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
-      KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
-      CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
-      CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
-      CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      CI_REGISTRY: ghcr.io
-      CLUSTER: ${{ secrets.CLUSTER }}
-
-    container:
-      image: marocz/k8s-deploy-helper-github:1.1.0
-      #   options: --privileged
-      # docker-in-dind:
-      #   image: docker:stable-dind
-      #   options: --privileged
 
     steps:
     # Checkout the code
@@ -357,32 +338,25 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Destroy
-      run: |
-        command destroy
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command destroy"
 
   destroy-canary:
     needs: App_Tests
     if: github.ref == 'refs/heads/production'  && github.event.inputs.is_canary_destroy == 'true'
     runs-on: ubuntu-latest
-    env:
-      CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-k8s-deploy-helper-examples
-      KUBE_URL: ${{ secrets.KUBE_URL }}
-      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-      KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
-      KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
-      CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
-      CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
-      CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      CI_REGISTRY: ghcr.io
-      CLUSTER: ${{ secrets.CLUSTER }}
-
-    container:
-      image: marocz/k8s-deploy-helper-github:1.1.0
-      #   options: --privileged
-      # docker-in-dind:
-      #   image: docker:stable-dind
-      #   options: --privileged
 
     steps:
     # Checkout the code
@@ -397,5 +371,17 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Destroy
-      run: |
-        command destroy
+      uses: marocz/kdh-github-action@v0.0.1.7
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command destroy"
