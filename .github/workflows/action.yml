@@ -89,9 +89,21 @@ jobs:
         CLUSTER: ${{ secrets.CLUSTER }}
         COMMAND: "command build"
 
-    # - name: Deploy
-    #   run: |
-    #     command deploy
+    - name: Deploy
+      uses: marocz/kdh-github-action@v0.0.1.6
+      with:
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
+        KUBE_URL: ${{ secrets.KUBE_URL }}
+        KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
+        KUBE_NAMESPACE: '${{ github.event.inputs.namespace }}'
+        CI_ENVIRONMENT_SLUG: '${{ github.event.inputs.env_slug }}'
+        CI_ENVIRONMENT_URL: 'http://spiringboot.marocz.com'
+        CI_DEPLOY_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+        CI_DEPLOY_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        CI_REGISTRY: ghcr.io
+        CLUSTER: ${{ secrets.CLUSTER }}
+        COMMAND: "command deploy"
 
   deploy-staging:
     needs: App_Tests
