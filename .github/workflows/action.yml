@@ -76,7 +76,7 @@ jobs:
     - name: Build(Using Action)
       uses: marocz/kdh-github-action@v0.0.1.2
       with:
-        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-k8s-deploy-helper-examples
+        CI_REGISTRY_IMAGE: ghcr.io/marocz/spring-kdh-github-action-examples
         KUBE_URL: ${{ secrets.KUBE_URL }}
         KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         KUBE_CA_PEM: ${{ secrets.KUBE_CA_PEM }}
